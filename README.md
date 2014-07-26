@@ -16,7 +16,7 @@ Note that the file scan takes the name/path of a file and the script will get th
 ### Usage:
 ```vtcheck -[u | f [ v | p ] | ? ] [file_name...]```
 
-Arguments:
+#### Arguments:
 u - check url  
 f - check file  
 v - verbose output. This will output a list of the services that consider a url or file to be malicious.  
