@@ -17,10 +17,10 @@ Note that the file scan takes the name/path of a file and the script will get th
 ```vtcheck -[u | f [ v | p ] | ? ] [file_name...]```
 
 Arguments:
-u - check url
-f - check file
-v - verbose output. This will output a list of the services that consider a url or file to be malicious.
-p - output a permalink to the VT report.
+u - check url  
+f - check file  
+v - verbose output. This will output a list of the services that consider a url or file to be malicious.  
+p - output a permalink to the VT report.  
 ? - print a list of the arguments and proper usage of the tool.
 
 Example:
