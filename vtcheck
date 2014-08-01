@@ -6,6 +6,12 @@ require 'uri'
 require 'digest/md5'
 
 @api_key = ''
+# Just a reminder check.
+if @api_key == ''
+	puts "You must use a VT API key. Without one, there can be no results."
+	exit(0)
+end
+
 
 @resource_url = nil
 @resource_type = nil
