@@ -101,7 +101,7 @@ def vt_check(resource_to_check)
 		end			
 
 	rescue Errno::ECONNREFUSED, Errno::EHOSTUNREACH
-		puts "An error occurred when connecting to the VT service."
+		puts "An error occurred when attempting to connect to the VirusTotal service."
 	end
 
 end
@@ -118,7 +118,7 @@ Usage:
 	Options:
 	-f		check file
 	-u		check url
-	-v		add verbose output to one of the previouse commands
+	-v		add verbose output to one of the previous commands
 	-p		print permalink to the VT report
 	-?		print help menu
 EOF
