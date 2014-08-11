@@ -79,9 +79,6 @@ def vt_check(resource_to_check)
 			if result['response_code'] == 1
 				if result['positives'].to_i > 0
 					puts "#{result['positives']} out of #{result['total']} services reported this as malicious."
-					if @options["permalink"] 
-						puts result['permalink']
-					end
 					if @options['verbose']
 						puts "Services reporting this as malicious:"
 						result["scans"].each_key do |key|
@@ -92,6 +89,9 @@ def vt_check(resource_to_check)
 					end
 				else
 					puts "This #{@resource_type} appears to be clean."
+				end
+				if @options["permalink"] 
+					puts result['permalink']
 				end
 			else
 				puts "There is currently no data on this #{@resource_type}. You may want to submit it to be safe."
@@ -124,7 +124,7 @@ Usage:
 EOF
 end
 
-if ARGV[0]
+if ARGV[0] && ARGV[1]
 	parse_args
 	if (@options['url'] || @options['file']) 
 		if ARGV[1]
@@ -142,4 +142,3 @@ else
 	print_usage
 	exit 0
 end
-#puts VT.check_file( VT.get_file_hash('Duolingo.ipa'))
