@@ -14,7 +14,6 @@ end
 
 
 @resource_url = nil
-@resource_type = nil
 
 @api_path = {	'file'	=>	'https://www.virustotal.com/vtapi/v2/file/report',
 				'url'	=>	'https://www.virustotal.com/vtapi/v2/url/report'}
@@ -64,8 +63,7 @@ def get_file_hash(file_path)
 	end
 end
 
-def vt_check(resource_to_check)
-
+def vt_check(resource_to_check, resource_type)
 	uri = URI.parse(@resource_url)
 	parameters = {	"resource" => "#{resource_to_check}", 
 					"apikey" => "#{@api_key}"}
@@ -88,13 +86,13 @@ def vt_check(resource_to_check)
 						end		
 					end
 				else
-					puts "This #{@resource_type} appears to be clean."
+					puts "This #{resource_type} appears to be clean, dammit."
 				end
-				if @options["permalink"] 
+				if @options["permalink"] and result['positives'].to_i > 0  
 					puts result['permalink']
 				end
 			else
-				puts "There is currently no data on this #{@resource_type}. You may want to submit it to be safe."
+				puts "There is currently no data on this #{resource_type}. You may want to submit it to be safe."
 			end
 		rescue => e
 			puts "There was an error with this call: #{e}"
@@ -129,9 +127,9 @@ if ARGV[0] && ARGV[1]
 	if (@options['url'] || @options['file']) 
 		if ARGV[1]
 			if  @options['url']
-				vt_check("#{ARGV[1]}")
+				vt_check("#{ARGV[1]}", "address")
 			elsif @options['file']
-				vt_check(get_file_hash("#{ARGV[1]}"))
+				vt_check(get_file_hash("#{ARGV[1]}"), "file")
 			end
 		else
 			print_usage
